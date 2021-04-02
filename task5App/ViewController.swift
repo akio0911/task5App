@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
         result = dividend! / divisor!
 
-        resultLabel.text = "\(result)"
+        resultLabel.text = String(format: "%.5f", result)
     }
 }
 
