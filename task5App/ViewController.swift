@@ -12,25 +12,21 @@ class ViewController: UIViewController {
     @IBOutlet private weak var dividendField: UITextField!
     @IBOutlet private weak var divisorField: UITextField!
     @IBOutlet private weak var resultLabel: UILabel!
-    private var alertController: UIAlertController!
 
     private func alert(title:String, message:String) {
-        alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true)
     }
 
     @IBAction func didTapButton(_ sender: Any) {
-        let dividend: Double? = Double(dividendField.text!) ?? nil
-        let divisor: Double? = Double(divisorField.text!) ?? nil
-        let result: Double
 
-        guard dividend != nil else {
+        guard let dividend = Double(dividendField.text!) else {
             alert(title: "課題5", message: "割られる数を入力してください")
             return
         }
 
-        guard divisor != nil else {
+        guard let divisor = Double(divisorField.text!) else {
             alert(title: "課題5", message: "割る数を入力してください")
             return
         }
@@ -40,7 +36,7 @@ class ViewController: UIViewController {
             return
         }
 
-        result = dividend! / divisor!
+        let result = dividend / divisor
 
         resultLabel.text = String(format: "%.5f", result)
     }
